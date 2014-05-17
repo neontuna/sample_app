@@ -30,7 +30,7 @@ development:
   database: sampleapp_dev
   pool: 5
   username: postgres
-  password: password
+  password: notjellodixie
 
 test:
   host: localhost
@@ -39,7 +39,7 @@ test:
   database: sampleapp_test
   pool: 5
   username: postgres
-  password: password
+  password: notjellodixie
 
 production:
   host: localhost
@@ -48,4 +48,4 @@ production:
   database: sampleapp_production
   pool: 5
   username: postgres
-  password: password
+  password: notjellodixie
