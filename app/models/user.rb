@@ -16,12 +16,13 @@ class User < ActiveRecord::Base
 	validates :name, 	presence: true, length: { maximum: 50 }
 	
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	validates :email, presence: true, 
-										format: { with: VALID_EMAIL_REGEX }, 
-										uniqueness: { case_sensitive: false }
+	validates :email, format: { with: VALID_EMAIL_REGEX }, allow_blank: true
+	validates :email, presence: true, uniqueness: { case_sensitive: false }
 
-	validates :password, presence: true, length: { minimum: 6 }
+	validates :password, length: { minimum: 6 }, allow_blank: true
+	validates :password, presence: true
 	validates :password_confirmation, presence: true
+	after_validation { self.errors.messages.delete(:password_digest) }
 	
 	before_save { email.downcase! }
 end
