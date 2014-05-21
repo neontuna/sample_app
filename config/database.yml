@@ -32,7 +32,7 @@ development:
   username: postgres
   password: notjellodixie
 
-test:
+test: &test
   host: localhost
   adapter: postgresql
   encoding: unicode
@@ -49,3 +49,5 @@ production:
   pool: 5
   username: postgres
   password: notjellodixie
+cucumber:
+  <<: *test
