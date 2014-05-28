@@ -86,10 +86,10 @@ describe "UserPages" do
 
 		describe "with valid information" do
 			before do
-				fill_in "Name",			with: "Example User"
-				fill_in "Email",		with: "user@example.com"
-				fill_in "Password",		with: "foobar"
-				fill_in "Confirmation",	with: "foobar"
+				fill_in "Name",				with: "Example User"
+				fill_in "Email",			with: "user@example.com"
+				fill_in "Password",			with: "foobar"
+				fill_in "Confirm Password",	with: "foobar"
 			end
 
 			it "should create a user" do
@@ -105,8 +105,16 @@ describe "UserPages" do
 				it { should have_link('Sign out') }
 			end
 		end
+	end
 
-  	end
+	describe "visiting signup when already signed in" do
+		let(:user) { FactoryGirl.create(:user) }
+		before do 
+			sign_in user
+			visit signup_path
+		end
+		it { should have_selector('div.alert.alert-notice') }
+	end
 
   	describe "edit" do
   		let(:user) { FactoryGirl.create(:user) }
