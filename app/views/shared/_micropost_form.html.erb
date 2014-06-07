@@ -2,9 +2,9 @@
 <!--
      
  $(function () {
- 	 $('textarea#micropost_content').maxlength({
-            alwaysShow: true
-        });
+ 	 $('#micropost_content').maxlength({
+            max: 140
+       });
  });
      
 //-->
@@ -13,7 +13,7 @@
 <%= form_for(@micropost) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
-		<%= f.text_area :content, class: "form-control", maxlength: 140 %>
+		<%= f.text_area :content, maxlength: 140 %>
 	</div>
 	<div class="fieldcount">
      
