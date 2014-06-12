@@ -3,7 +3,10 @@
      
  $(function () {
  	 $('#micropost_content').maxlength({
-            max: 140
+            max: 140,
+            feedbackText: '{r} characters remaining',
+            showFeedback: 'true',
+            feedbackTarget: '#targetFeedback'
        });
  });
      
@@ -15,8 +18,8 @@
 	<div class="field">
 		<%= f.text_area :content, maxlength: 140 %>
 	</div>
-	<div class="fieldcount">
-     
-  	</div>
-	<%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	<div class="row">
+	<div class="span2"><%= f.submit "Post", class: "btn btn-large btn-primary" %></div>
+    <div class="span2"><span id="targetFeedback">&nbsp;</span></div>
+	</div>
 <% end %>
