@@ -42,4 +42,20 @@ describe "MicropostPages" do
 			end
 		end
 	end
+
+	# Really ugly test for delete links on other user's profile pages
+	describe "profile page" do
+		let(:user1) { FactoryGirl.create(:user) }
+		let(:user2) { FactoryGirl.create(:user) }
+		let!(:m1) { FactoryGirl.create(:micropost, user: user1, content: "Foo") }
+		let!(:m2) { FactoryGirl.create(:micropost, user: user2, content: "Bar") }
+
+		before { sign_in user1 }
+		before { visit user_path(user2) }
+
+		describe "microposts" do
+			it { should_not have_link('delete', href: micropost_path(m2)) }
+		end
+	end
+
 end
